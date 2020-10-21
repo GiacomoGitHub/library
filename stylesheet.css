@@ -1,0 +1,40 @@
+body {
+    background-color: black;
+    color: rgb(226, 224, 224);
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    margin: 5% 10% 5% 10%;
+}
+
+h1 {
+    font-size: 400%;
+}
+
+h3 {
+    font-size: 150%;
+}
+
+h4 {
+    font-size: 230%;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: black;
+    width: 40%;
+    margin: 7px;
+    font-size: 120%;
+    padding: 1%;
+    color: rgb(226, 224, 224);
+}
+
+button {
+    margin-top: 5%;
+    border: none;
+    background-color: rgb(226, 224, 224);
+    color: black;
+    font-size: 120%;
+    padding: 1.5%;
+    width: 30%;
+}
