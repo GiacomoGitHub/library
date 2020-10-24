@@ -7,34 +7,65 @@ body {
 }
 
 h1 {
-    font-size: 400%;
+    font-size: 60px;
 }
 
 h3 {
-    font-size: 150%;
-}
-
-h4 {
-    font-size: 230%;
+    font-size: 20px;
 }
 
 input {
     border: none;
     border-bottom: 1px solid white;
     background-color: black;
-    width: 40%;
+    text-align: left;
+    width: 300px;
     margin: 7px;
-    font-size: 120%;
+    margin-top: 20px;
+    font-size: 20px;
     padding: 1%;
     color: rgb(226, 224, 224);
 }
 
+input, select, textarea {
+    color: rgb(226, 224, 224);
+}
+
 button {
-    margin-top: 5%;
-    border: none;
+    margin-top: 30px;
+    border: solid 1px rgb(226, 224, 224);
     background-color: rgb(226, 224, 224);
+    opacity: 90%;
     color: black;
-    font-size: 120%;
+    font-size: 20px;
     padding: 1.5%;
-    width: 30%;
+    width: 250px;
+    border-radius: 20px;
+}
+
+button:hover {
+    cursor: pointer;
+    opacity: 100%;
+}
+
+button:active {
+    background-color: black;
+    border: solid 1px rgb(226, 224, 224);
+    color: rgb(226, 224, 224);
+}
+
+#displayer {
+    display: inline-block;
+    text-align: center;
+}
+
+#myBooks {
+    margin-top: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#bookList {
+    text-align: left;
 }
