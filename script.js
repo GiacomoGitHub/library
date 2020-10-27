@@ -1,6 +1,3 @@
-
-
-
 // Books to test the code:
 // ("Antifragile", "Nassim Nicholas Taleb", "544");
 // ("Harry Potter and the Philosopher's Stone", "J.K.Rowling", "342")
@@ -21,14 +18,20 @@ function addBookToLibrary() { // takes the user's input
     let newBook = new Book(); // uses the input to create a new Object
     myLibrary.push(newBook); // adds new Book Object created with the constructor to the array myLibrary
     updateLibrary();
+    clearInputFields();
 }
-
 
 let bookList = document.getElementById("bookList"); // targets the <p> to display the Book Objects
 
 function updateLibrary() {
-    // how to clear the table before adding and showing the new books?
-    myLibrary.forEach(item => bookList.innerHTML += "- " + Object.values(item).join(", ") + "<br>" + "<br>"); // shows the Book Objects
+    bookList.innerHTML = " "; // clear the table before adding and showing the new books
+    myLibrary.forEach(item => bookList.innerHTML += Object.values(item).join(", ") + "<br>" + "<br>"); // shows the Book Objects
 }
 
 document.getElementById("btn").addEventListener('click', addBookToLibrary); // listens to click on button and calls addBookToLibrary
+
+function clearInputFields() { // clear the input after pressing the button
+    document.getElementById("title").value = " ";
+    document.getElementById("author").value = " ";
+    document.getElementById("pages").value = " ";
+}  
