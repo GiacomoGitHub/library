@@ -21,17 +21,25 @@ function addBookToLibrary() { // takes the user's input
     clearInputFields();
 }
 
-let bookList = document.getElementById("bookList"); // targets the <p> to display the Book Objects
-
-function updateLibrary() {
-    bookList.innerHTML = " "; // clear the table before adding and showing the new books
-    myLibrary.forEach(item => bookList.innerHTML += Object.values(item).join(", ") + "<br>" + "<br>"); // shows the Book Objects
+function updateLibrary() { // update the library
+    let displayer = document.getElementById("displayer"); // targets the displayer
+    displayer.innerHTML = "MY BOOKS"; // clears the library
+    myLibrary.forEach(item => { // for each Object in the array to the following
+        bookList = document.createElement("div"); // create a new div
+        bookList.setAttribute("id", "bookList"); // give it the id bookList for styling
+        bookList.innerHTML += Object.values(item).join(", ") + "<br>" + "<br>"; // show the Object inside it
+        displayer.appendChild(bookList); // append the new div to the DOM
+        let toggle = document.createElement("input");
+        toggle.setAttribute("id", "toggle");
+        toggle.setAttribute("type", "checkbox");
+        bookList.appendChild(toggle);
+    });
 }
 
 document.getElementById("btn").addEventListener('click', addBookToLibrary); // listens to click on button and calls addBookToLibrary
 
-function clearInputFields() { // clear the input after pressing the button
-    document.getElementById("title").value = " ";
-    document.getElementById("author").value = " ";
-    document.getElementById("pages").value = " ";
+function clearInputFields() { // resets the input after pressing the button
+    document.getElementById("title").value = title.defaultValue;
+    document.getElementById("author").value = author.defaultValue;
+    document.getElementById("pages").value = pages.defaultValue;
 }  
