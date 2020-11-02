@@ -27,16 +27,27 @@ function updateLibrary() { // update the library
     myLibrary.forEach(item => { // for each Object in the array do the following
         bookList = document.createElement("div"); // create a new div
         bookList.setAttribute("id", "bookList"); // give it the id bookList for styling
-        let toggle = document.createElement("input"); // creates the toggle
+        let toggle = document.createElement("button"); // creates the toggle button
         toggle.setAttribute("id", "toggle"); // sets its id
-        toggle.setAttribute("type", "checkbox"); // makes it as a checkbox
+
+        // toggle.setAttribute("type", "checkbox"); // makes it as a checkbox
+
         bookList.appendChild(toggle); // appends it to the new div
         bookList.innerHTML += Object.values(item).join(", ") + "<br>" + "<br>"; // show the Object inside the div
-        displayer.appendChild(bookList); // append the new div to the DOM
+
         let removeBtn = document.createElement("button"); // creates the remove button
         removeBtn.setAttribute("id", "removeBtn"); // sets its id
         removeBtn.innerHTML = "&#10005" // sets the content inside the button
         bookList.appendChild(removeBtn); // appends it to the new div
+        
+        displayer.appendChild(bookList); // append the new div to the DOM
+        // let removeBtn = document.createElement("button"); // creates the remove button
+        // removeBtn.setAttribute("id", "removeBtn"); // sets its id
+        // removeBtn.innerHTML = "&#10005" // sets the content inside the button
+        // bookList.appendChild(removeBtn); // appends it to the new div
+        
+        toggle = document.getElementById("toggle"); // targets the toggle
+        toggle.addEventListener('click', () => { toggle.setAttribute("id", "toggleActivated");}); // adds event listener
     });
 }
 
@@ -77,7 +88,10 @@ function clearInputFields() { // resets the input after pressing the button
     document.getElementById("pages").value = pages.defaultValue;
 }  
 
-
+// let toggle = document.getElementById("toggle");
+// function changeToggleColor () {
+//     toggle.addEventListener('click', () => { alert('hey')})
+// }
 
 
 // THINGS I'D LIKE TO HAVE

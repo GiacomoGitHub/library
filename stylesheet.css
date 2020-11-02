@@ -57,15 +57,13 @@ input, select, textarea {
 }
 
 #displayer {
-    display: inline-block;
     text-align: center;
     margin-top: 7%;
 }
 
 #bookList {
-    display: inline-flex;
-    grid-template-columns: auto;
-    text-align: left;
+    position: relative;
+    text-align: center;
     width: auto;
     background-color: rgb(22, 22, 22);
     border-radius: 20px;
@@ -74,13 +72,46 @@ input, select, textarea {
 }
 
 #toggle {
+    position: absolute;
+    top: 30%;
+    left: 15px;
     cursor: pointer;
     padding: -95px;
-    width: 60px;
+    border-radius: 25px;
+    width: 34px;
     height: 34px;
+    border: 1px solid rgb(226, 224, 224);
+    background-color: rgb(22, 22, 22);
+    opacity: 75%;
+}
+
+#toggle:hover {
+    opacity: 100%;
+}
+
+#toggle:active {
+    border: 1px solid rgb(22, 22, 22);
+    background-color: rgb(226, 224, 224);
+}
+
+#toggleActivated {
+    position: absolute;
+    top: 30%;
+    left: 15px;
+    cursor: pointer;
+    padding: -95px;
+    border-radius: 25px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    background-color: rgb(226, 224, 224);
+    opacity: 80%;
 }
 
 #removeBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
     cursor: pointer;
     text-align: center;
     border: none;
