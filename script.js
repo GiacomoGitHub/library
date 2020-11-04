@@ -25,29 +25,34 @@ function updateLibrary() { // update the library
     let displayer = document.getElementById("displayer"); // targets the displayer
     displayer.innerHTML = "MY BOOKS" + "<br>" + "<br>" + "Use the checkbox to remember which books you have read"; // clears the library and adds the title of the displayer
     myLibrary.forEach(item => { // for each Object in the array do the following
+        
         bookList = document.createElement("div"); // create a new div
-        bookList.setAttribute("id", "bookList"); // give it the id bookList for styling
+        bookList.setAttribute("class", "bookList"); // give it the class bookList for styling
+
+        bookList.setAttribute("id", myLibrary.indexOf(item)); // sets the id to be the index position of the object in the array
+
         let toggle = document.createElement("button"); // creates the toggle button
-        toggle.setAttribute("id", "toggle"); // sets its id
-
-        // toggle.setAttribute("type", "checkbox"); // makes it as a checkbox
-
+        toggle.setAttribute("class", "toggle"); // sets its class for CSS styling
         bookList.appendChild(toggle); // appends it to the new div
+        
         bookList.innerHTML += Object.values(item).join(", ") + "<br>" + "<br>"; // show the Object inside the div
 
         let removeBtn = document.createElement("button"); // creates the remove button
-        removeBtn.setAttribute("id", "removeBtn"); // sets its id
+        removeBtn.setAttribute("class", "removeBtn"); // sets its class for CSS styling
         removeBtn.innerHTML = "&#10005" // sets the content inside the button
+        removeBtn.setAttribute("id", myLibrary.indexOf(item)); // sets the id to be the index position of the object in the array
         bookList.appendChild(removeBtn); // appends it to the new div
+
+        removeBtn.addEventListener('click', () => { // listen to click on remove button
+            myLibrary.splice(myLibrary.indexOf(item), 1); // if clicked, remove the object from the array
+            updateLibrary(); // update the library
+        });
         
         displayer.appendChild(bookList); // append the new div to the DOM
-        // let removeBtn = document.createElement("button"); // creates the remove button
-        // removeBtn.setAttribute("id", "removeBtn"); // sets its id
-        // removeBtn.innerHTML = "&#10005" // sets the content inside the button
-        // bookList.appendChild(removeBtn); // appends it to the new div
         
-        toggle = document.getElementById("toggle"); // targets the toggle
-        toggle.addEventListener('click', () => { toggle.setAttribute("id", "toggleActivated");}); // adds event listener
+        // WORKING ON THIS !!!
+        // toggle = document.getElementsByClassName("toggle"); // targets the toggles
+        // toggle.addEventListener('click', () => { alert('hey') }); // changes the appearance of the toggle
     });
 }
 
@@ -87,11 +92,6 @@ function clearInputFields() { // resets the input after pressing the button
     document.getElementById("author").value = author.defaultValue;
     document.getElementById("pages").value = pages.defaultValue;
 }  
-
-// let toggle = document.getElementById("toggle");
-// function changeToggleColor () {
-//     toggle.addEventListener('click', () => { alert('hey')})
-// }
 
 
 // THINGS I'D LIKE TO HAVE
