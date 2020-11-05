@@ -28,31 +28,30 @@ function updateLibrary() { // update the library
         
         bookList = document.createElement("div"); // create a new div
         bookList.setAttribute("class", "bookList"); // give it the class bookList for styling
-
         bookList.setAttribute("id", myLibrary.indexOf(item)); // sets the id to be the index position of the object in the array
+        bookList.innerHTML += Object.values(item).join(", ") + "<br>" + "<br>"; // show the Object inside the div
 
         let toggle = document.createElement("button"); // creates the toggle button
         toggle.setAttribute("class", "toggle"); // sets its class for CSS styling
         bookList.appendChild(toggle); // appends it to the new div
-        
-        bookList.innerHTML += Object.values(item).join(", ") + "<br>" + "<br>"; // show the Object inside the div
+        toggle.addEventListener('click', () => {  // listen to click on toggle 
+            if (toggle.className === "toggle") { // if the toggle is unchecked
+                toggle.setAttribute("class", "toggleActivated");
+                toggle.innerHTML = "&check;"; // check it
+            } else { toggle.setAttribute("class", "toggle"); } // else, uncheck it
+        });
 
         let removeBtn = document.createElement("button"); // creates the remove button
         removeBtn.setAttribute("class", "removeBtn"); // sets its class for CSS styling
         removeBtn.innerHTML = "&#10005" // sets the content inside the button
         removeBtn.setAttribute("id", myLibrary.indexOf(item)); // sets the id to be the index position of the object in the array
         bookList.appendChild(removeBtn); // appends it to the new div
-
         removeBtn.addEventListener('click', () => { // listen to click on remove button
             myLibrary.splice(myLibrary.indexOf(item), 1); // if clicked, remove the object from the array
             updateLibrary(); // update the library
         });
         
         displayer.appendChild(bookList); // append the new div to the DOM
-        
-        // WORKING ON THIS !!!
-        // toggle = document.getElementsByClassName("toggle"); // targets the toggles
-        // toggle.addEventListener('click', () => { alert('hey') }); // changes the appearance of the toggle
     });
 }
 
@@ -60,31 +59,31 @@ let addButton = document.getElementById("buttonAddToLibrary"); // targets the "A
 addButton.addEventListener('click', addBookToLibrary); // listens to click on button and calls addBookToLibrary
 
 
-let inputFieldTitle = document.getElementById("title"); // targets the title input
-inputFieldTitle.addEventListener('keydown', function(event) {
-    if (event.key === "Enter") { // If the key "Enter" is pressed
-      event.preventDefault(); // Cancel the default action, if needed
-      document.getElementById("buttonAddToLibrary").click(); // Trigger the button element with a click
-    }
-  });
+// let inputFieldTitle = document.getElementById("title"); // targets the title input
+// inputFieldTitle.addEventListener('keydown', function(event) {
+//     if (event.key === "Enter") { // If the key "Enter" is pressed
+//       event.preventDefault(); // Cancel the default action, if needed
+//       document.getElementById("buttonAddToLibrary").click(); // Trigger the button element with a click
+//     }
+//   });
 
 
-let inputFieldAuthor = document.getElementById("author"); // targets the author input
-inputFieldAuthor.addEventListener('keydown', function(event) {
-    if (event.key === "Enter") { // If the key "Enter" is pressed
-      event.preventDefault(); // Cancel the default action, if needed
-      document.getElementById("buttonAddToLibrary").click(); // Trigger the button element with a click
-    }
-  });
+// let inputFieldAuthor = document.getElementById("author"); // targets the author input
+// inputFieldAuthor.addEventListener('keydown', function(event) {
+//     if (event.key === "Enter") { // If the key "Enter" is pressed
+//       event.preventDefault(); // Cancel the default action, if needed
+//       document.getElementById("buttonAddToLibrary").click(); // Trigger the button element with a click
+//     }
+//   });
 
 
-let inputFieldPages = document.getElementById("pages"); // targets the pages input
-inputFieldPages.addEventListener('keydown', function(event) {
-    if (event.key === "Enter") { // If the key "Enter" is pressed
-      event.preventDefault(); // Cancel the default action, if needed
-      document.getElementById("buttonAddToLibrary").click(); // Trigger the button element with a click
-    }
-  });
+// let inputFieldPages = document.getElementById("pages"); // targets the pages input
+// inputFieldPages.addEventListener('keydown', function(event) {
+//     if (event.key === "Enter") { // If the key "Enter" is pressed
+//       event.preventDefault(); // Cancel the default action, if needed
+//       document.getElementById("buttonAddToLibrary").click(); // Trigger the button element with a click
+//     }
+//   });
 
 
 function clearInputFields() { // resets the input after pressing the button
