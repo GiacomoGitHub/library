@@ -30,7 +30,7 @@ function updateLibrary() { // update the library
         bookList = document.createElement("div"); // create a new div
         bookList.setAttribute("class", "bookList"); // give it the class bookList for styling
         bookList.setAttribute("id", myLibrary.indexOf(item)); // set the id to be the index position of the object in the array
-        bookList.innerHTML += Object.values(item).join(", ") + "<br>" + "<br>"; // show the Object inside the div
+        bookList.innerHTML += Object.values(item).slice(0, 3).join(", ") + "<br>" + "<br>"; // show the Object inside the div (hiding the key "read")
 
         let toggle = document.createElement("button"); // create the toggle button
 
