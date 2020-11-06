@@ -59,31 +59,31 @@ let addButton = document.getElementById("buttonAddToLibrary"); // targets the "A
 addButton.addEventListener('click', addBookToLibrary); // listens to click on button and calls addBookToLibrary
 
 
-// let inputFieldTitle = document.getElementById("title"); // targets the title input
-// inputFieldTitle.addEventListener('keydown', function(event) {
-//     if (event.key === "Enter") { // If the key "Enter" is pressed
-//       event.preventDefault(); // Cancel the default action, if needed
-//       document.getElementById("buttonAddToLibrary").click(); // Trigger the button element with a click
-//     }
-//   });
+let inputFieldTitle = document.getElementById("title"); // targets the title input
+inputFieldTitle.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") { // If the key "Enter" is pressed
+      event.preventDefault(); // Cancel the default action, if needed
+      document.getElementById("author").focus(); // Move to next input field
+    }
+  });
 
 
-// let inputFieldAuthor = document.getElementById("author"); // targets the author input
-// inputFieldAuthor.addEventListener('keydown', function(event) {
-//     if (event.key === "Enter") { // If the key "Enter" is pressed
-//       event.preventDefault(); // Cancel the default action, if needed
-//       document.getElementById("buttonAddToLibrary").click(); // Trigger the button element with a click
-//     }
-//   });
+let inputFieldAuthor = document.getElementById("author"); // targets the author input
+inputFieldAuthor.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") { // If the key "Enter" is pressed
+      event.preventDefault(); // Cancel the default action, if needed
+      document.getElementById("pages").focus(); // Move to next input field
+    }
+  });
 
 
-// let inputFieldPages = document.getElementById("pages"); // targets the pages input
-// inputFieldPages.addEventListener('keydown', function(event) {
-//     if (event.key === "Enter") { // If the key "Enter" is pressed
-//       event.preventDefault(); // Cancel the default action, if needed
-//       document.getElementById("buttonAddToLibrary").click(); // Trigger the button element with a click
-//     }
-//   });
+let inputFieldPages = document.getElementById("pages"); // targets the pages input
+inputFieldPages.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") { // If the key "Enter" is pressed
+      event.preventDefault(); // Cancel the default action, if needed
+      document.getElementById("buttonAddToLibrary").click(); // Add the book ad though by clicking the button
+    }
+  });
 
 
 function clearInputFields() { // resets the input after pressing the button
