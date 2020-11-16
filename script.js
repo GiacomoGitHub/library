@@ -1,13 +1,26 @@
-// Books for testing the code:
-// ("Antifragile", "Nassim Nicholas Taleb", "544");
-// ("Harry Potter and the Philosopher's Stone", "J.K.Rowling", "342")
-// ("Harry Potter and the Chamber of Secrets", "J.K.Rowling", "251")
-// ("Harry Potter and the Prisoner of Azkaban", "J.K.Rowling", "317")
-// ("The Lord of the Rings: The Fellowship of the Ring", "J.R.Tolkien", "479")
-// ("The Lord of the Rings: The Return of the King", "J.R.Tolkien", "347")
-
+// CREATE AN EMPTY ARRAY TO USE AS A AS LIBRARY
 let myLibrary = []; // store Book Objects in this empty array
 
+
+// UPDATE THE LOCAL STORAGE ON THE USER'S MACHINE
+function updateLocalStorage(myLibrary) {
+    localStorage.setItem("library", JSON.stringify(myLibrary));
+}
+
+
+// ON LOAD, READ THE LIBRARY STORED IN THE LOCAL STORAGE OF THE USER'S MACHINE
+window.addEventListener("load", () => {
+    if (localStorage.length !== 0) {
+        JSON.parse(localStorage.getItem("library")).forEach((book) => {
+            console.log(book);
+            myLibrary.push(book);
+        });
+        updateLibrary();
+    }
+});
+
+
+// CONSTRUCTOR
 function Book() { // use this constructor to create new Book Objects
     this.title = document.getElementById("title").value;
     this.author = document.getElementById("author").value;
@@ -15,6 +28,8 @@ function Book() { // use this constructor to create new Book Objects
     this.read = false;
 }
 
+
+// ADD NEW BOOK TO LIBRARY
 function addBookToLibrary() { // take the user's input
     let newBook = new Book(); // use the input to create a new Object
     myLibrary.push(newBook); // add new Book Object created with the constructor to the array "myLibrary"
@@ -22,6 +37,8 @@ function addBookToLibrary() { // take the user's input
     clearInputFields(); // clear input fields
 }
 
+
+// SHOW THE BOOKS IN THE LIBRARY
 function updateLibrary() { // update the library
     let displayer = document.getElementById("displayer"); // target the displayer
     displayer.innerHTML = "MY BOOKS" + "<br>" + "<br>" + "Use the checkbox to remember which books you have read"; // clear the library and adds the title of the displayer
@@ -33,7 +50,8 @@ function updateLibrary() { // update the library
         bookList.innerHTML += Object.values(item).slice(0, 3).join(", ") + "<br>" + "<br>"; // show the Object inside the div (hiding the key "read")
 
         let toggle = document.createElement("button"); // create the toggle button
-
+        
+        // CHECKMARK THE BOOK IF READ
         function setToggleClass() { // set the toggle's class for styling based on the key "read"
             if (item.read === false) { // if it has not been read
                 toggle.setAttribute("class", "toggle"); // set its class to the unchecked toggle
@@ -52,9 +70,11 @@ function updateLibrary() { // update the library
                 toggle.setAttribute("class", "toggleActivated"); // change the class of the toggle to check it
                 item.read = true; // set the key "read" to true
                 toggle.innerHTML = "&check;"; // put a check symbol in the toggle
+                updateLocalStorage(myLibrary); // update the local storage on the user's machine
             } else { // otherwise
                 toggle.setAttribute("class", "toggle"); // uncheck the toggle and remove the check symbol
                 item.read = false; // set the key "read" to false
+                updateLocalStorage(myLibrary); // update the local storage on the user's machine
             } 
         });
 
@@ -66,52 +86,58 @@ function updateLibrary() { // update the library
         removeBtn.addEventListener('click', () => { // listen to click on remove button
             myLibrary.splice(myLibrary.indexOf(item), 1); // if clicked, remove the object from the array
             updateLibrary(); // update the library
+            updateLocalStorage(myLibrary); // update the local storage on the user's machine
         });
         
         displayer.appendChild(bookList); // append the new div to the DOM
+        // updateLocalStorage(myLibrary); // update the local storage on the user's machine
     });
 }
 
-let addButton = document.getElementById("buttonAddToLibrary"); // target the "Add book to library" button
-addButton.addEventListener('click', addBookToLibrary); // listen to click on button and calls addBookToLibrary
+    // MAKE THE ADD BUTTON WORK
+    let addButton = document.getElementById("buttonAddToLibrary"); // target the "Add book to library" button
+    addButton.addEventListener('click', addBookToLibrary); // listen to click on button and calls addBookToLibrary
 
 
-let inputFieldTitle = document.getElementById("title"); // target the title input
-inputFieldTitle.addEventListener('keydown', function(event) { // listen to pressing of a key
-    if (event.key === "Enter") { // if the key "Enter" is pressed
-      event.preventDefault(); // cancel the default action, if needed
-      document.getElementById("author").focus(); // move to next input field
-    }
-  });
+        // MAKE THE INPUT FIELDS WORK
+        let inputFieldTitle = document.getElementById("title"); // target the title input
+        inputFieldTitle.addEventListener('keydown', function(event) { // listen to pressing of a key
+            if (event.key === "Enter") { // if the key "Enter" is pressed
+            event.preventDefault(); // cancel the default action, if needed
+            document.getElementById("author").focus(); // move to next input field
+            }
+        });
 
 
-let inputFieldAuthor = document.getElementById("author"); // target the author input
-inputFieldAuthor.addEventListener('keydown', function(event) {
-    if (event.key === "Enter") { // if the key "Enter" is pressed
-      event.preventDefault(); // cancel the default action, if needed
-      document.getElementById("pages").focus(); // move to next input field
-    }
-  });
+        let inputFieldAuthor = document.getElementById("author"); // target the author input
+        inputFieldAuthor.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") { // if the key "Enter" is pressed
+            event.preventDefault(); // cancel the default action, if needed
+            document.getElementById("pages").focus(); // move to next input field
+            }
+        });
 
 
-let inputFieldPages = document.getElementById("pages"); // target the pages input
-inputFieldPages.addEventListener('keydown', function(event) {
-    if (event.key === "Enter") { // if the key "Enter" is pressed
-      event.preventDefault(); // cancel the default action, if needed
-      document.getElementById("buttonAddToLibrary").click(); // add the book ad though by clicking the button
-    }
-  });
+        let inputFieldPages = document.getElementById("pages"); // target the pages input
+        inputFieldPages.addEventListener('keydown', function(event) {
+            if (event.key === "Enter") { // if the key "Enter" is pressed
+            event.preventDefault(); // cancel the default action, if needed
+            document.getElementById("buttonAddToLibrary").click(); // add the book ad though by clicking the button
+            }
+        });
 
 
-function clearInputFields() { // reset the input after pressing the button
-    document.getElementById("title").value = title.defaultValue;
-    document.getElementById("author").value = author.defaultValue;
-    document.getElementById("pages").value = pages.defaultValue;
-}  
+        function clearInputFields() { // reset the input after pressing the button
+            document.getElementById("title").value = title.defaultValue;
+            document.getElementById("author").value = author.defaultValue;
+            document.getElementById("pages").value = pages.defaultValue;
+        }
 
 
-// THINGS I'D LIKE TO HAVE
-// don't submit if empty field and show me where I need to add stuff
+
+
+// ADDITIONAL FEATURES
+// don't submit if empty field and show user where to add stuff
 // dark/light mode switch
-// books stored in alphabetical order
-// possibility to see only books I haven't read yet
+// books put in alphabetical order
+// possibility to see only books user hasn't read yet
