@@ -94,9 +94,28 @@ function updateLibrary() { // update the library
     });
 }
 
-    // MAKE THE ADD BUTTON WORK
-    let addButton = document.getElementById("buttonAddToLibrary"); // target the "Add book to library" button
-    addButton.addEventListener('click', addBookToLibrary); // listen to click on button and calls addBookToLibrary
+
+
+        // MAKE THE ADD BUTTON WORK
+        let addButton = document.getElementById("buttonAddToLibrary"); // target the "Add book to library" button
+        addButton.addEventListener('click', function () {
+            // if the input fields are not empty, proceed with saving the input data, update the library and the local storage, reset the input fields
+            if (document.getElementById("title").value !== "" && document.getElementById("author").value !== "" && document.getElementById("pages").value !== "") {
+                addBookToLibrary();
+                updateLocalStorage(myLibrary);
+                (document.getElementById("title")).setAttribute("class", "input");
+                (document.getElementById("author")).setAttribute("class", "input");
+                (document.getElementById("pages")).setAttribute("class", "input");
+            // else, if any the input fields is empty, reset the color of the filled ones, and change the color of the empty ones to red
+            } else { 
+                (document.getElementById("title")).setAttribute("class", "input");
+                (document.getElementById("author")).setAttribute("class", "input");
+                (document.getElementById("pages")).setAttribute("class", "input");
+                if ((document.getElementById("title").value).length < 1) { (document.getElementById("title")).setAttribute("class", "inputRequired") }
+                else if ((document.getElementById("author").value).length < 1) { (document.getElementById("author")).setAttribute("class", "inputRequired") }
+                else if ((document.getElementById("pages").value).length < 1) { (document.getElementById("pages")).setAttribute("class", "inputRequired") }
+             };
+        }); // listen to click on button and calls addBookToLibrary
 
 
         // MAKE THE INPUT FIELDS WORK
