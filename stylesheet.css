@@ -128,3 +128,15 @@ input, select, textarea {
     border-radius: 20px;
     margin: auto;
 }
+
+/* .notes {
+    font-size: smaller;
+}
+
+.notesInput {
+    border: none;
+    border-bottom: 0.1px solid rgb(226, 224, 224);
+    background-color: black;
+    opacity: 65%;
+    text-align: left;
+} */
