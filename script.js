@@ -214,7 +214,11 @@ class Book {
     constructor(title, author, pages, read) { // use this constructor to create new Book Objects
         this.title = document.getElementById("title").value;
         this.author = document.getElementById("author").value;
-        this.pages = document.getElementById("pages").value + " pages";
+        if (document.getElementById("pages").value !== "") { // if the value of the input field for pages is not empty
+            this.pages = document.getElementById("pages").value + " pages"; // add its value to the book object in the library
+        } else {
+            this.pages = "pages not saved"; // if the input field for the pages is empty, store this message in the book object
+        }
         this.read = false;
     }
 }
@@ -291,7 +295,7 @@ function updateLibrary() { // update the library
         let addButton = document.getElementById("buttonAddToLibrary"); // target the "Add book to library" button
         addButton.addEventListener('click', function () {
             // if the input fields are not empty, proceed with saving the input data, update the library and the local storage, reset the input fields
-            if (document.getElementById("title").value !== "" && document.getElementById("author").value !== "" && document.getElementById("pages").value !== "") {
+            if (document.getElementById("title").value !== "" && document.getElementById("author").value !== "") {
                 addBookToLibrary();
                 updateLocalStorage(myLibrary);
                 (document.getElementById("title")).setAttribute("class", "input");
@@ -332,7 +336,7 @@ function updateLibrary() { // update the library
         inputFieldPages.addEventListener('keydown', function(event) {
             if (event.key === "Enter") { // if the key "Enter" is pressed
             event.preventDefault(); // cancel the default action, if needed
-            document.getElementById("buttonAddToLibrary").click(); // add the book ad though by clicking the button
+            document.getElementById("buttonAddToLibrary").click(); // add the book by clicking the button
             }
         });
 
